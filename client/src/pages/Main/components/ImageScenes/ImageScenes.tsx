@@ -119,6 +119,7 @@ export const ImageScenes = () => {
                             </div>
                         </div>
                         <DataTable
+                            size={"small"}
                             className={"mt-2"}
                             value={testData}
                             showGridlines={true}
