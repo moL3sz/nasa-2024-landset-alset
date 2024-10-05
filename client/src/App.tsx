@@ -1,11 +1,11 @@
 import './App.css'
 import 'primeicons/primeicons.css';
-import "primereact/resources/themes/lara-light-teal/theme.css"
 import {Map} from "./pages/Main/components/Map/Map.tsx";
 import {Navbar} from "./components/Navbar/Navbar.tsx";
 import {useAppSelector} from "./store/hooks.ts";
 import {Globe} from "./pages/Main/components/Globe/Globe.tsx";
 import {TargetSidebar} from "./pages/Main/components/TargetsSidebar/TargetsSidebar.tsx";
+import {ImageScenes} from "./pages/Main/components/ImageScenes/ImageScenes.tsx";
 
 function App() {
 
@@ -21,6 +21,7 @@ function App() {
                 mode ? <Map/> : <Globe/>
             }
             <TargetSidebar/>
+            <ImageScenes/>
         </main>
     )
 }

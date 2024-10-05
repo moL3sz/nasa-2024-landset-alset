@@ -5,6 +5,8 @@ import {Badge} from "primereact/badge";
 import {TargetItemType} from "../../@types/targetItem.type.ts";
 import {InputText} from "primereact/inputtext";
 import {TargetItem} from "./TargetItem.tsx";
+import {useCallback, useEffect, useState} from "react";
+import {BASE_API_URL} from "../../../../config/globals.ts";
 
 
 const testData: any[] = [
@@ -87,10 +89,15 @@ export const TargetSidebar = () => {
 
     const opened = useAppSelector(state => state.targetList.opened);
     const dispatch = useAppDispatch();
+    const [targets, setTargets] = useState<any[]>([]);
 
-
-    const getTargetList = () =>{
+    const getTargetList = useCallback(async () =>{
         try {
+            const response = await fetch(BASE_API_URL + "/targets", {
+                method:"GET",
+            });
+            const data = await response.json();
+            setTargets(data);
 
         }
         catch (e){
@@ -99,7 +106,12 @@ export const TargetSidebar = () => {
         finally {
 
         }
-    }
+    },[]);
+
+
+    useEffect(()=>{
+        getTargetList();
+    },[])
 
     return <Sidebar
         visible={opened}
@@ -114,7 +126,7 @@ export const TargetSidebar = () => {
             <InputText className={"w-full"} placeholder={"Search by location name..."} />
             <div className={"flex flex-col gap-2 mt-4 "}>
                 {
-                    testData.map((item)=>{
+                    targets.map((item)=>{
                         return <TargetItem data={item}/>
                     })
                 }

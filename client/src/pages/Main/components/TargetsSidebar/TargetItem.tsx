@@ -18,11 +18,11 @@ export const TargetItem = memo(({data}:TargetItemProps) =>{
         <div className={"text-white font-bold"}>{data.locationName}</div>
         <div className={"mt-2 flex justify-between"}>
             <div >
-                <div>Latitude: {data.latitude}</div>
-                <div>Longitude: {data.longitude}</div>
+                <div>Latitude: {data.coordinate.lat}</div>
+                <div>Longitude: {data.coordinate.lng}</div>
             </div>
             <div>
-                <Countdown date={Date.now() + data.count} />
+                <Countdown date={Date.now() + 0} />
             </div>
         </div>
 

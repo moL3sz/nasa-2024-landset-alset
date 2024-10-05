@@ -31,6 +31,15 @@ export const Navbar = memo(() => {
     const openTargetList = () => dispatch(toggle());
 
 
+    const toggleTheme = () =>{
+        const themeLink = document.getElementById('theme-link') as HTMLLinkElement;
+        console.log(themeLink)
+        if (themeLink) {
+            themeLink.href = "primereact/resources/themes/lara-light-teal/theme.css"
+        }
+
+    }
+
 
     const searchLocations = async (e:any) =>{
 
@@ -63,20 +72,55 @@ export const Navbar = memo(() => {
             <Image
                 src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"}
                 width={48} height={48}/>
-            <Button type="button" icon={"pi pi-image"} label="Scenes" size={"small"} className={"min-w-fit"}/>
-            <Button type="button" icon={"pi pi-bell"}  className={"min-w-fit"} label="Notifications" size={"small"} severity="warning"
-                    onClick={openNotifications}/>
-            <InputText ref={searchInputRef} className={"opacity-50 w-full"} placeholder={"Search locations"} onKeyPress={searchLocations}/>
+
+
+            <Button
+                visible={false}
+                type="button"
+                icon={"pi pi-bell"}
+                className={"min-w-fit"}
+                label="Notifications"
+                size={"small"}
+                severity="warning"
+                onClick={openNotifications}
+                tooltip={"Notification settings"}
+                tooltipOptions={{position:"bottom"}}
+            />
+            <InputText
+                ref={searchInputRef}
+                tooltip={"Search by city, country, region"}
+                tooltipOptions={{position:"bottom"}}
+                className={"opacity-50 w-full"}
+                placeholder={"Search locations..."}
+                onKeyPress={searchLocations}
+
+            />
+
             <div className={"flex items-center gap-2"}>
+                <Button
+                    icon={"pi pi-sun"}
+                    text
+                    severity={"warning"}
+                    onClick={toggleTheme}
+                />
                 <Button
                     className={"justify-self-end"}
                     size={"small"}
                     label={mode ? "Map" : "Globe"}
                     icon={mode ? "pi pi-map" : "pi pi-globe"}
                     onClick={changeMode}
+                    tooltip={"Change mode"}
+                    tooltipOptions={{position:"bottom"}}
                 />
 
-                <Button size={"small"} icon={"pi pi-map-marker"} severity={"danger"} text onClick={openTargetList}>
+                <Button
+                    tooltip={"Targets"}
+                    tooltipOptions={{position:"bottom"}}
+                    size={"small"}
+                    icon={"pi pi-map-marker"}
+                    severity={"danger"}
+                    text
+                    onClick={openTargetList}>
                     <Badge value="2" className={"ms-1"} severity={"danger"}></Badge>
                 </Button>
             </div>
