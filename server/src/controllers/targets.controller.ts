@@ -37,7 +37,18 @@ router.put("/", async (req, res)=>{
 		res.status(500).send(e);
 	}
 })
-router.delete("/:id")
+router.delete("/:id", async (req, res)=>{
+	try {
+		const entity = req.body as ITarget;
+		const updated = await Target.findByIdAndDelete(entity._id).exec();
+		if(updated === null) {
+			throw new Error("Not found");
+		}
+		res.status(200).send(updated)
+	} catch (e) {
+		res.status(500).send(e);
+	}
+})
 
 
 export default router;

@@ -20,9 +20,12 @@ export namespace TLEService {
 			if(prev.createdAt?.getHours() + 1 > new Date().getHours() && false){
 
 
-				const newTLE = await fetch(SPACE_TRACKER_API +" ", { headers: {
+				const res = await fetch(SPACE_TRACKER_API +" ", { headers: {
 					"Authorization":""
 					}})
+				const newTLE = await res.text()
+
+				console.log(newTLE);
 
 
 			}
