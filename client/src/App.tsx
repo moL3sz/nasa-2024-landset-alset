@@ -3,6 +3,7 @@ import 'primeicons/primeicons.css';
 import { MegaMenu } from 'primereact/megamenu';
 import { Image } from 'primereact/image';
 import "primereact/resources/themes/lara-light-teal/theme.css"
+import {MenuItem} from "primereact/menuitem";
 function App() {
 	return (
 		<main className={"w-full"}>
@@ -20,7 +21,7 @@ function App() {
 					{id: 1, label:"Modes", icon:"pi pi-globe",  separator:true},
 					{id: 1, label:"Scenes", icon:"pi pi-images", },
 					{id: 1, label:"Targets", icon:"pi pi-map-marker", }
-			]}/>
+			] as MenuItem[]}/>
 
 			<div className={"mx-auto w-fit"}>
 				<Image alt={"NASA"}
