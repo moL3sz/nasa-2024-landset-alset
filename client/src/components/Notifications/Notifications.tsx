@@ -15,20 +15,29 @@ export const Notifications =
 
     return <OverlayPanel  ref={ref}>
         <div className={"flex flex-col gap-4"}>
-            <div>Enable notification types</div>
+            <div>Enabled notification types</div>
             <div className={"flex flex-col gap-4"}>
                 <div className={"flex items-center justify-between"}>
-                    <div>SMS</div>
+                    <div>
+                        <i className={"pi pi-mobile me-2"}/><span>SMS</span>
+                    </div>
+
                     <InputSwitch  checked={sms}  onChange={({value})=>{
                        setSMS(value);
                     }}/>
                 </div>
                 <div className={"flex items-center justify-between"} >
-                    <div>WebPush</div>
+                    <div>
+                        <i className={"pi pi-arrow-circle-up me-2"}/><span>WebPush</span>
+                    </div>
+
                     <InputSwitch checked={webpush} onChange={({value})=>setWebpush(value)}/>
                 </div>
                 <div className={"flex items-center justify-between"}>
-                    <div>Email</div>
+                    <div>
+                        <i className={"pi pi-at me-2"}/><span>Email</span>
+                    </div>
+
                     <InputSwitch checked={email} onChange={({value})=>setEmail(value)}/>
                 </div>
 

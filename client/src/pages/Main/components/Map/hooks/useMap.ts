@@ -2,6 +2,7 @@ import {useAppDispatch, useAppSelector} from "../../../../../store/hooks.ts";
 import {useCallback, useEffect} from "react";
 import {BASE_API_URL} from "../../../../../config/globals.ts";
 import {setTargets} from "../../../../../store/map/map.slice.ts";
+import {toggleVisible} from "../../../../../store/imageScenes/imageScenes.slice.ts";
 
 
 export const useMap = () =>{
@@ -20,6 +21,8 @@ export const useMap = () =>{
         }
     },[]);
 
+    const showScenes = () =>dispatch(toggleVisible());
+
 
 
     useEffect(()=>{
@@ -27,6 +30,7 @@ export const useMap = () =>{
     },[]);
 
     return {
-        targets
+        targets,
+        showScenes
     }
 }
