@@ -7,9 +7,11 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const package_json_1 = require("../package.json");
 const cors_1 = __importDefault(require("cors"));
+const database_config_1 = require("./config/database.config");
 dotenv_1.default.config();
 const APP_PORT = process.env.PORT;
 const app = (0, express_1.default)();
+database_config_1.dbo.init();
 // --- CORS --- //
 app.use((0, cors_1.default)());
 // --- JSON parser --- //
