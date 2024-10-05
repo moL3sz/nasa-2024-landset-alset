@@ -35,6 +35,7 @@ router.get("/:id")
 router.post("/", async (req, res) => {
 	try {
 		const entity = req.body as ITarget;
+		console.log(entity);
 		const target = new Target({...entity});
 		res.status(200).send(await target.save())
 	} catch (e) {
