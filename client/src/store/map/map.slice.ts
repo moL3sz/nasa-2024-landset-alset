@@ -6,11 +6,13 @@ import {MAP_BASE_CENTER} from "../../config/globals.ts";
 type MapState = {
     targets:any[],
     centerPosition:number[]
+	pathDate: string,
 }
 
 const initialState:MapState = {
     targets:[],
-    centerPosition:MAP_BASE_CENTER
+    centerPosition:MAP_BASE_CENTER,
+	pathDate: "",
 }
 
 const mapSlice = createSlice({
@@ -38,9 +40,12 @@ const mapSlice = createSlice({
             const filtered = state.targets.filter(x=>x._id !== payload);
             state.targets = [...filtered];
         },
-        updateTarget(state, {payload}:PayloadAction<string>){
+        updateTarget(state, {payload}:PayloadAction<string>) {
 
-        }
+		},
+		setPathDate(state, {payload}:PayloadAction<string>){
+			state.pathDate = payload;
+		}
 
 
     },
@@ -51,6 +56,7 @@ export const {
     addTargetTemporarly,
     addTarget,
     deleteTarget,
+	setPathDate,
     updateTarget,
     setCenterPosition
 } = mapSlice.actions
