@@ -1,19 +1,27 @@
 
 
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {MAP_BASE_CENTER} from "../../config/globals.ts";
 
 type MapState = {
     targets:any[],
+    centerPosition:number[]
 }
 
 const initialState:MapState = {
-    targets:[]
+    targets:[],
+    centerPosition:MAP_BASE_CENTER
 }
 
 const mapSlice = createSlice({
     name: "map",
     initialState,
     reducers: {
+
+        setCenterPosition(state, {payload}:PayloadAction<number[]>){
+            state.centerPosition = [...payload];
+        },
+
         setTargets(state, {payload}:PayloadAction<any[]>){
             state.targets = [...payload];
         },
@@ -43,7 +51,8 @@ export const {
     addTargetTemporarly,
     addTarget,
     deleteTarget,
-    updateTarget
+    updateTarget,
+    setCenterPosition
 } = mapSlice.actions
 export const mapReducer = mapSlice.reducer
 

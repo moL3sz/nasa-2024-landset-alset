@@ -1456,6 +1456,11 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+flag-icon-css@^4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-4.1.7.tgz#5471197f9ab965a3603b3e0face31dd513fec289"
+  integrity sha512-AFjSU+fv98XbU0vnTQ32vcLj89UEr1MhwDFcooQv14qWJCjg9fGZzfh9BVyDhAhIOZW/pGmJmq38RqpgPaeybQ==
+
 flat-cache@^4.0.0:
   version "4.0.1"
   resolved "https://registry.npmjs.org/flat-cache/-/flat-cache-4.0.1.tgz"
@@ -2194,7 +2199,7 @@ rbush@^3.0.1:
 
 react-countdown@^2.3.6:
   version "2.3.6"
-  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.3.6.tgz#26699ea87e548bd7c981281e5a8fd8b511f774ff"
+  resolved "https://registry.npmjs.org/react-countdown/-/react-countdown-2.3.6.tgz"
   integrity sha512-ZfX6S08Hb6x6W6eCn1hMDvxPICI/T30fd+gaeVTCR/2cGZ2WJ3f26e4ImNIMX1fHkopJrUdnRpWXP13/D39+gg==
   dependencies:
     prop-types "^15.7.2"
@@ -2352,7 +2357,7 @@ safe-buffer@^5.1.0:
 
 satellite.js@^5.0.0:
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/satellite.js/-/satellite.js-5.0.0.tgz#9db39c7c6f202d3486fb7b9da072d023d8ec0a63"
+  resolved "https://registry.npmjs.org/satellite.js/-/satellite.js-5.0.0.tgz"
   integrity sha512-ie3yiJ2LJAJIhVUKdYhgp7V0btXKAMImDjRnuaNfJGl8rjwP2HwVIh4HLFcpiXYEiYwXc5fqh5+yZqCe6KIwWw==
 
 scheduler@^0.23.2:

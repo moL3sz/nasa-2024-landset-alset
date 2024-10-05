@@ -120,7 +120,7 @@ export const TargetSidebar = () => {
         onHide={() => dispatch(toggle())}
     >
         <i className={"pi pi-map-marker"}/> <span>Current target locations</span>
-        <Badge value={testData.length} severity={"danger"} className={"ms-2"}></Badge>
+        <Badge value={targets.length} severity={"danger"} className={"ms-2"}></Badge>
 
         <div className={"w-full mt-4"}>
             <InputText className={"w-full"} placeholder={"Search by location name..."} />

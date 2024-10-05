@@ -1,19 +1,36 @@
 // @ts-ignore
 import {MapContainer} from 'react-leaflet/MapContainer'
 import {TileLayer} from 'react-leaflet/TileLayer'
-import {Marker, Popup} from "react-leaflet";
+import {Marker, Popup, useMap as useLeafletMap} from "react-leaflet";
 import "./Map.css";
 import {Button} from "primereact/button";
 import {useMap} from "./hooks/useMap.ts";
+import {useEffect} from "react";
 
-const centerPosition = [51.505, -0.09];
+
+
+type MapRecenterProps = {
+    lat:number,
+    lng:number,
+    zoomLevel:number
+}
+const MapRecenter = ({ lat, lng, zoomLevel }:MapRecenterProps) => {
+    const map = useLeafletMap();
+
+    useEffect(() => {
+        map.flyTo([lat, lng], zoomLevel );
+    }, [lat, lng]);
+
+    return null;
+
+};
 
 export const Map = () => {
 
-
     const {
         targets,
-        showScenes
+        showScenes,
+        centerPosition
     } = useMap();
 
 
@@ -21,10 +38,11 @@ export const Map = () => {
         <div className={""}>
             <MapContainer
                 id={"map"}
-                center={centerPosition}
-                zoom={13}
+                center={[...centerPosition]}
+                zoom={6}
                 scrollWheelZoom={true}
                 style={{height: "100vh", width: "100%"}}>
+
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
@@ -52,6 +70,7 @@ export const Map = () => {
                         </Marker>
                     })
                 }
+                <MapRecenter lat={centerPosition[0]} lng={centerPosition[1]} zoomLevel={6}/>
             </MapContainer>
 
 

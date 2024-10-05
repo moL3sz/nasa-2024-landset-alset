@@ -5,8 +5,10 @@ export interface ITarget {
 		lng: number,
 		lat: number,
 	}
-	sendMode: string,
+	sendMode: string[],
 	_id: string
+	locationName:string,
+	ISO_alpha2:string
 }
 
 interface TargetModel extends Model<ITarget> {
@@ -17,8 +19,11 @@ export const targetScheme = new Schema<ITarget, TargetModel>({
 		lng: Number,
 		lat: Number,
 	},
-	sendMode: String,
-
+	sendMode: [
+		String
+	],
+	locationName:String,
+	ISO_alpha2:String
 
 })
 

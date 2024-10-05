@@ -6,6 +6,7 @@ import {useAppSelector} from "./store/hooks.ts";
 import {Globe} from "./pages/Main/components/Globe/Globe.tsx";
 import {TargetSidebar} from "./pages/Main/components/TargetsSidebar/TargetsSidebar.tsx";
 import {ImageScenes} from "./pages/Main/components/ImageScenes/ImageScenes.tsx";
+import "flag-icon-css/css/flag-icons.css"
 
 function App() {
 

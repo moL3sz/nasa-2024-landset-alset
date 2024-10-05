@@ -8,6 +8,7 @@ import {toggleVisible} from "../../../../../store/imageScenes/imageScenes.slice.
 export const useMap = () =>{
 
     const targets = useAppSelector(state=>state.map.targets);
+    const centerPosition = useAppSelector(state=>state.map.centerPosition);
     const dispatch = useAppDispatch();
 
     const getTargetList = useCallback(async () =>{
@@ -31,6 +32,7 @@ export const useMap = () =>{
 
     return {
         targets,
-        showScenes
+        showScenes,
+        centerPosition
     }
 }
