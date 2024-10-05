@@ -32,7 +32,6 @@ function App() {
 
         <main className={"w-full"}>
             <Navbar/>
-
             <Map/>
             <TargetSidebar/>
             <ImageScenes/>

@@ -91,24 +91,6 @@ export const Map = () => {
 				<SatelliteImageLayer width={50} height={50}/>
                 <MapRecenter lat={centerPosition[0]} lng={centerPosition[1]} zoomLevel={6}/>
             </MapContainer>
-
-            <div className={"fixed bottom-0 h-96 w-full mx-auto bg-gray-800 bg-opacity-80 rounded-t-2xl"}>
-                <div>
-                    <i className={"pi pi-images"}/>
-                    <span className={"text-white ms-2"}>Image scenes</span>
-
-                    <Image
-                        src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"}
-                        width={"48"} height={"48"}/>
-                    <DataTable>
-                        <Column field="code" header="Code"></Column>
-                        <Column field="name" header="Name"></Column>
-                        <Column field="category" header="Category"></Column>
-                        <Column field="quantity" header="Quantity"></Column>
-                    </DataTable>
-                </div>
-
-            </div>
 			<OverlayPanel ref={overlayPanel} >
 				<div>
 					<div>

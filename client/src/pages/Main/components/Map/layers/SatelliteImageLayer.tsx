@@ -38,7 +38,6 @@ export const SatelliteImageLayer = ({width, height}: SatelliteImageLayerProps )=
 			clearInterval(int)
 		}
 	}, [tle]);
-	console.log(bounds)
 
 	return (
 		bounds.length > 0 ?

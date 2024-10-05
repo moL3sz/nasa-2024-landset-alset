@@ -121,7 +121,7 @@ export const TargetSidebar = () => {
                     }, 500);
                 }}/>
             </IconField>
-            <ScrollPanel style={{height:"calc(100vh - 200px)"}}>
+            <ScrollPanel style={{height:"calc(100vh - 200px)"}} className={"mt-2"}>
                 {
                     filteredData.map((item)=>{
                         return <TargetItem data={item}/>

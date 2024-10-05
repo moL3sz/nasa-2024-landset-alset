@@ -1,7 +1,7 @@
 import express from "express";
 import targetsController from "./controllers/targets.controller";
 import tleController from "./controllers/tle.controller";
-import sceneMetadataController from "./controllers/sceneMetadata,controller";
+import sceneMetadataController from "./controllers/sceneMetadata.controller";
 
 
 const router = express.Router();

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
 
 	try{
-		const metadatas = await SceneMetadata.findOne().exec();
+		const metadatas = await SceneMetadata.find().exec();
 		res.status(200).send(metadatas);
 	}catch (e){
 		res.status(500).send(e);
