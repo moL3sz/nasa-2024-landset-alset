@@ -4,10 +4,12 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 type MapState = {
     targets:any[],
+	pathDate: string,
 }
 
 const initialState:MapState = {
-    targets:[]
+    targets:[],
+	pathDate: "",
 }
 
 const mapSlice = createSlice({
@@ -30,9 +32,12 @@ const mapSlice = createSlice({
             const filtered = state.targets.filter(x=>x._id !== payload);
             state.targets = [...filtered];
         },
-        updateTarget(state, {payload}:PayloadAction<string>){
+        updateTarget(state, {payload}:PayloadAction<string>) {
 
-        }
+		},
+		setPathDate(state, {payload}:PayloadAction<string>){
+			state.pathDate = payload;
+		}
 
 
     },
@@ -43,7 +48,8 @@ export const {
     addTargetTemporarly,
     addTarget,
     deleteTarget,
-    updateTarget
+    updateTarget,
+	setPathDate
 } = mapSlice.actions
 export const mapReducer = mapSlice.reducer
 
