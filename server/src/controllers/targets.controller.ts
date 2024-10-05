@@ -1,6 +1,7 @@
 import express from "express";
 import {ITarget, Target} from "../models/target.model";
 import {defaultInputTarget} from "concurrently/dist/src/defaults";
+import {TargetsService} from "../services/targets.service";
 
 
 const router = express.Router();
@@ -9,10 +10,24 @@ const router = express.Router();
 router.get("/", async (req, res) => {
 
 	try{
-		const targets = await Target.find();
-		console.log(targets)
+		const targets = await Target.find().exec();
+
+
 		res.status(200).send(targets);
 	}catch (e){
+		res.status(500).send(e);
+	}
+})
+router.get("/passing", async (req, res) => {
+
+	try{
+		const targets = await Target.find().exec();
+		const passing = await TargetsService.calculatePassingTime(
+			targets.map((x:any)=>x._doc)
+		)
+		res.status(200).send(passing);
+	}catch (e){
+		console.error(e)
 		res.status(500).send(e);
 	}
 })

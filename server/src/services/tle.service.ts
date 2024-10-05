@@ -25,7 +25,6 @@ export namespace TLEService {
 					}})
 				const newTLE = await res.text()
 
-				console.log(newTLE);
 
 
 			}
