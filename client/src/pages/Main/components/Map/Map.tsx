@@ -52,13 +52,12 @@ export const Map = () => {
                         return <Marker position={target.coordinate}>
                             <Popup>
                                 <div className={"w-full flex flex-col gap-2"}>
-                                    <div className={"font-extrabold"}>Eger</div>
-                                    <div>
-                                        kfopkopkfoős
-                                        flklsklfs
-                                        űlfspőslkősf
-                                        kfoősk
+                                    <div className={"flex gap-1"}>
+                                        <span className={`flag-icon flag-icon-${target.ISO_alpha2}`}/>
+                                        <div className={"font-extrabold"}>{target.locationName}</div>
                                     </div>
+
+                                    <div>{target.coordinate.lat}, {target.coordinate.lng}</div>
                                     <Button
                                         size={"small"}
                                         className={"w-full"}

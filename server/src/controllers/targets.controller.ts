@@ -55,12 +55,12 @@ router.put("/", async (req, res)=>{
 })
 router.delete("/:id", async (req, res)=>{
 	try {
-		const entity = req.body as ITarget;
-		const updated = await Target.findByIdAndDelete(entity._id).exec();
-		if(updated === null) {
+		const id = req.params.id;
+		const deleted = await Target.findByIdAndDelete(id).exec();
+		if(deleted === null) {
 			throw new Error("Not found");
 		}
-		res.status(200).send(updated)
+		res.status(200).send(deleted._id)
 	} catch (e) {
 		res.status(500).send(e);
 	}

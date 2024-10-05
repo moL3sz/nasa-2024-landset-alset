@@ -5,8 +5,11 @@ import {Badge} from "primereact/badge";
 import {TargetItemType} from "../../@types/targetItem.type.ts";
 import {InputText} from "primereact/inputtext";
 import {TargetItem} from "./TargetItem.tsx";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {BASE_API_URL} from "../../../../config/globals.ts";
+import {IconField} from "primereact/iconfield";
+import {InputIcon} from "primereact/inputicon";
+import {ScrollPanel} from "primereact/scrollpanel";
 
 
 const testData: any[] = [
@@ -89,33 +92,20 @@ export const TargetSidebar = () => {
 
     const opened = useAppSelector(state => state.targetList.opened);
     const dispatch = useAppDispatch();
-    const [targets, setTargets] = useState<any[]>([]);
-
-    const getTargetList = useCallback(async () =>{
-        try {
-            const response = await fetch(BASE_API_URL + "/targets", {
-                method:"GET",
-            });
-            const data = await response.json();
-            setTargets(data);
-
-        }
-        catch (e){
-
-        }
-        finally {
-
-        }
-    },[]);
+    const targets = useAppSelector(state=>state.map.targets);
+    const [query, setQuery] = useState<string>("");
 
 
-    useEffect(()=>{
-        getTargetList();
-    },[])
+    const filteredData = useMemo(() => {
+        return targets.filter(item =>
+            item.locationName.toLowerCase().includes(query.toLowerCase())
+        );
+    }, [query, targets]);
+
 
     return <Sidebar
         visible={opened}
-        className={"w-[500px]"}
+        className={"w-[500px] z-10"}
         position={"right"}
         onHide={() => dispatch(toggle())}
     >
@@ -123,14 +113,21 @@ export const TargetSidebar = () => {
         <Badge value={targets.length} severity={"danger"} className={"ms-2"}></Badge>
 
         <div className={"w-full mt-4"}>
-            <InputText className={"w-full"} placeholder={"Search by location name..."} />
-            <div className={"flex flex-col gap-2 mt-4 "}>
+            <IconField iconPosition="left">
+                <InputIcon className={"pi pi-search"}/>
+                <InputText className={"w-full"} placeholder={"Search by location name..."} onChange={(e)=>{
+                    setTimeout(()=>{
+                        setQuery(e.target.value);
+                    }, 500);
+                }}/>
+            </IconField>
+            <ScrollPanel style={{height:"calc(100vh - 200px)"}}>
                 {
-                    targets.map((item)=>{
+                    filteredData.map((item)=>{
                         return <TargetItem data={item}/>
                     })
                 }
-            </div>
+            </ScrollPanel>
 
         </div>
 

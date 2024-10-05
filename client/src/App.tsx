@@ -18,9 +18,7 @@ function App() {
         <main className={"w-full"}>
             <Navbar/>
 
-            {
-                mode ? <Map/> : <Globe/>
-            }
+            <Map/>
             <TargetSidebar/>
             <ImageScenes/>
         </main>

@@ -11,13 +11,19 @@ import {Badge} from "primereact/badge";
 import {InputText} from "primereact/inputtext";
 import {SearchResults} from "../SearchResults/SearchResults.tsx";
 import {OPENCAGE_APIKEY} from "../../config/globals.ts";
+import {ZIndexUtils} from "primereact/utils";
+import {IconField} from "primereact/iconfield";
+import {InputIcon} from "primereact/inputicon";
+
 
 export const Navbar = memo(() => {
 
     const mode = useAppSelector(state => state.mode.mode);
+    const targetCount = useAppSelector(state=>state.map.targets.length)
     const dispatch = useAppDispatch();
 
     const [searchResults, setSearchResults] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const notificationsRef = useRef<OverlayPanel>(null);
     const targetsRef = useRef<OverlayPanel>(null);
@@ -49,8 +55,10 @@ export const Navbar = memo(() => {
 
         const searchValue = searchInputRef.current?.value;
         console.log(searchValue)
+        if (!searchValue || searchValue.length === 0) return;
 
-        searchResultsRef.current?.toggle(e)
+        searchResultsRef.current?.toggle(e);
+        setLoading(true)
         try{
             const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${searchValue}&key=${OPENCAGE_APIKEY}`, {
                 method:"GET"
@@ -62,13 +70,15 @@ export const Navbar = memo(() => {
             console.error(e);
         }
         finally {
-
+            setTimeout(()=>{
+                setLoading(false);
+            },300);
         }
 
     }
 
     return (
-        <div className={"flex items-center w-full fixed z-50 shadow-lg h-[60px] px-4 bg-gray-800 bg-opacity-75 gap-2"}>
+        <div className={"flex items-center w-full fixed z-50 shadow-lg h-[60px] px-5 bg-gray-800 bg-opacity-75 gap-2 "}>
             <Image
                 src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"}
                 width={48} height={48}/>
@@ -86,15 +96,19 @@ export const Navbar = memo(() => {
                 tooltip={"Notification settings"}
                 tooltipOptions={{position:"bottom"}}
             />
-            <InputText
-                ref={searchInputRef}
-                tooltip={"Search by city, country, region"}
-                tooltipOptions={{position:"bottom"}}
-                className={"opacity-50 w-full"}
-                placeholder={"Search locations..."}
-                onKeyPress={searchLocations}
+            <IconField iconPosition="left" className={"opacity-50 w-full"}>
+                <InputIcon className="pi pi-search"> </InputIcon>
+                <InputText
+                    ref={searchInputRef}
+                    tooltip={"Search by city, country, region"}
+                    tooltipOptions={{position:"bottom"}}
+                    className={"w-full"}
+                    placeholder={"Search locations..."}
+                    onKeyPress={searchLocations}
 
-            />
+                />
+            </IconField>
+
 
             <div className={"flex items-center gap-2"}>
                 <Button
@@ -102,14 +116,16 @@ export const Navbar = memo(() => {
                     text
                     severity={"warning"}
                     onClick={toggleTheme}
+                    tooltip={"Theme"}
+                    tooltipOptions={{position:"bottom"}}
                 />
                 <Button
                     className={"justify-self-end"}
                     size={"small"}
-                    label={mode ? "Map" : "Globe"}
+                    text
                     icon={mode ? "pi pi-map" : "pi pi-globe"}
                     onClick={changeMode}
-                    tooltip={"Change mode"}
+                    tooltip={"Mode"}
                     tooltipOptions={{position:"bottom"}}
                 />
 
@@ -121,13 +137,17 @@ export const Navbar = memo(() => {
                     severity={"danger"}
                     text
                     onClick={openTargetList}>
-                    <Badge value="2" className={"ms-1"} severity={"danger"}></Badge>
+                    {
+                        targetCount === 0 ? null :
+                        <Badge value={targetCount} className={"ms-1"} severity={"danger"}></Badge>
+                    }
+
                 </Button>
             </div>
 
             <Notifications ref={notificationsRef}/>
             <Targets ref={targetsRef}/>
-            <SearchResults ref={searchResultsRef} searchResults={searchResults}/>
+            <SearchResults ref={searchResultsRef} searchResults={searchResults} loading={loading}/>
         </div>
     );
 

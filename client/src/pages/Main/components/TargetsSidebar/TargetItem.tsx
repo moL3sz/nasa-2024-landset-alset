@@ -1,8 +1,12 @@
-import {memo} from "react";
+import {memo, useMemo} from "react";
 import {TargetItemType} from "../../@types/targetItem.type.ts";
 import Countdown from "react-countdown";
 import {Badge} from "primereact/badge";
 import {Button} from "primereact/button";
+import {BASE_API_URL} from "../../../../config/globals.ts";
+import {useAppDispatch} from "../../../../store/hooks.ts";
+import {deleteTarget} from "../../../../store/map/map.slice.ts";
+import {toggleVisible} from "../../../../store/imageScenes/imageScenes.slice.ts";
 
 
 type TargetItemProps = {
@@ -16,6 +20,24 @@ const severityColors: { [key: number]: string } = {
 }
 
 export const TargetItem = memo(({data}: TargetItemProps) => {
+
+
+    const dispatch = useAppDispatch();
+
+
+    const delTarget = async () =>{
+        try{
+            const response = await fetch(BASE_API_URL + `/targets/${data._id}`, {
+                method:"DELETE",
+            });
+            const deletedId = await response.json();
+            dispatch(deleteTarget(deletedId));
+        }
+        catch (e){
+
+        }
+    }
+
 
 
     return <div className={"hover:backdrop-brightness-125 p-3 cursor-pointer rounded-lg"}>
@@ -45,7 +67,11 @@ export const TargetItem = memo(({data}: TargetItemProps) => {
         </div>
 
         <div className={"flex w-full justify-end"}>
-            <Button icon={"pi pi-trash"} size={"small"} severity={"danger"} text/>
+            <Button icon={"pi pi-eye"} size={"small"} text label={"View"}/>
+            <Button icon={"pi pi-images"} size={"small"} label={"Scenes"} text severity={"secondary"} onClick={()=>{
+                dispatch(toggleVisible());
+            }}/>
+            <Button icon={"pi pi-trash"} size={"small"} severity={"danger"} text onClick={delTarget}/>
         </div>
 
     </div>
