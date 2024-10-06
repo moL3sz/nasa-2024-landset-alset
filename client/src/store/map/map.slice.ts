@@ -7,14 +7,16 @@ type MapState = {
     targets:any[],
     centerPosition:number[]
 	pathDate: string,
-    zoom:number
+    zoom:number,
+    view:string
 }
 
 const initialState:MapState = {
     targets:[],
     centerPosition:MAP_BASE_CENTER,
 	pathDate: "",
-    zoom:6
+    zoom:6,
+    view:"street"
 }
 
 const mapSlice = createSlice({
@@ -50,6 +52,11 @@ const mapSlice = createSlice({
 		},
         setZoom(state, {payload}:PayloadAction<number>){
             state.zoom = payload;
+        },
+        setView(state){
+            if (state.view === "satellite") state.view = "street"
+            else state.view = "satellite";
+
         }
 
 
@@ -64,7 +71,8 @@ export const {
 	setPathDate,
     updateTarget,
     setCenterPosition,
-    setZoom
+    setZoom,
+    setView
 } = mapSlice.actions
 export const mapReducer = mapSlice.reducer
 

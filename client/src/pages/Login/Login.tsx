@@ -29,12 +29,16 @@ const Login = () =>{
                         <InputIcon className={"pi pi-lock"}/>
                         <InputText type={"password"} placeholder={"Enter password"}/>
                     </IconField>
-                    <Button label={"Sign in"} icon={"pi pi-sign-in"} className={"w-full"} size={"small"}/>
+                    <Button label={"Sign in"} icon={"pi pi-sign-in"} className={"w-full"} size={"small"} onClick={()=>navigate("/")}/>
                     <Button label={"Don't have an account? Sign up now!"} severity={"help"} size={"small"} text onClick={()=>navigate("/signup")}/>
                 </div>
 
             </Card>
             <div className={"flex flex-col items-center p-2"}>
+                <img
+                    className={"rounded-full shadow-2xl"}
+                    src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2AU7HrCZiGamsHv-C4M_zGYO6UBCkuR74zE4NqeF5ENLIP4pcPNSmyGCbz4yibH9R1EY&usqp=CAU"}
+                    width={48} height={48}/>
                 <div className={"font-bold text-white"}>Landsat Land Tracker by ALSET</div>
                 <div>&#169; All rights reserved</div>
             </div>

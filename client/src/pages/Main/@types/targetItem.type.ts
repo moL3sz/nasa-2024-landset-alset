@@ -10,5 +10,6 @@ export type TargetItemType = {
         lng:number
     }
     sendMode:string[],
-    ISO_alpha2:string
+    ISO_alpha2:string,
+    passingTime:string
 }

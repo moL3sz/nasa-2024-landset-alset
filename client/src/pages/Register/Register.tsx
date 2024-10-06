@@ -20,7 +20,7 @@ const Register = () => {
                  }}>
             </div>
             <Card
-                className={"h-auto w-[30%] border-[1px] border-gray-700 shadow-xl translate-y-[-200px] flex flex-col items-center"}>
+                className={"h-auto w-[30%] border-[1px] border-gray-700 shadow-xl translate-y-[-100px] flex flex-col items-center"}>
                 <div className={"flex flex-col items-center gap-6"}>
                     <i className={"pi pi-user-plus"} style={{fontSize: 32}}/>
                     <div>Sign Up</div>
@@ -49,6 +49,10 @@ const Register = () => {
 
             </Card>
             <div className={"pb-2 flex flex-col items-center"}>
+                <img
+                    className={"rounded-full shadow-2xl"}
+                    src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2AU7HrCZiGamsHv-C4M_zGYO6UBCkuR74zE4NqeF5ENLIP4pcPNSmyGCbz4yibH9R1EY&usqp=CAU"}
+                    width={48} height={48}/>
                 <div className={"font-bold text-white"}>Landsat Land Tracker by ALSET</div>
                 <div>&#169; All rights reserved</div>
             </div>

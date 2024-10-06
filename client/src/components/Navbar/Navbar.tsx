@@ -80,9 +80,10 @@ export const Navbar = memo(() => {
 
     return (
         <div className={"flex items-center w-full fixed z-50 shadow-lg h-[60px] px-5 bg-gray-800 bg-opacity-75 gap-2 "}>
-            <Image
-                src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"}
-                width={48} height={48}/>
+            {/*<img
+                className={"rounded-full shadow-2xl"}
+                src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2AU7HrCZiGamsHv-C4M_zGYO6UBCkuR74zE4NqeF5ENLIP4pcPNSmyGCbz4yibH9R1EY&usqp=CAU"}
+                width={48} height={48}/>*/}
 
 
             <Button

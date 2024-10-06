@@ -8,7 +8,8 @@ export interface ITarget {
 	sendMode: string[],
 	_id: string
 	locationName:string,
-	ISO_alpha2:string
+	ISO_alpha2:string,
+	cloudCoverage:number
 }
 
 interface TargetModel extends Model<ITarget> {
@@ -23,8 +24,8 @@ export const targetScheme = new Schema<ITarget, TargetModel>({
 		String
 	],
 	locationName:String,
-	ISO_alpha2:String
-
+	ISO_alpha2:String,
+	cloudCoverage:Number
 })
 
 

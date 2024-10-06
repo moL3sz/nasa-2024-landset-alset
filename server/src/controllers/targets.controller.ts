@@ -46,7 +46,10 @@ router.post("/", async (req, res) => {
 })
 router.put("/", async (req, res)=>{
 	try {
+		console.log("Lruftok")
+		console.log(req)
 		const entity = req.body as ITarget;
+		console.log(entity)
 		const updated = await Target.findByIdAndUpdate(entity._id, {
 			...entity
 		})
