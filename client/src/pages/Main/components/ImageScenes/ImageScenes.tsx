@@ -94,7 +94,6 @@ export const ImageScenes = () => {
                     </div> :
                     <div>
 
-
                         <div className={"w-full flex items-center justify-between"}>
                             <div>
                                 <i className={"pi pi-images"}/>

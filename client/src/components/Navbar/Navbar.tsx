@@ -14,6 +14,7 @@ import {OPENCAGE_APIKEY} from "../../config/globals.ts";
 import {ZIndexUtils} from "primereact/utils";
 import {IconField} from "primereact/iconfield";
 import {InputIcon} from "primereact/inputicon";
+import {toggleUserInfoVisible} from "../../store/gobal/global.store.ts";
 
 
 export const Navbar = memo(() => {
@@ -143,6 +144,12 @@ export const Navbar = memo(() => {
                     }
 
                 </Button>
+
+                <div
+                    onClick={()=>dispatch(toggleUserInfoVisible())}
+                    className={"hover:scale-110 bg-gradient-to-bl p-1 transition-all from-indigo-400 to-blue-500 h-[32px] w-[32px] rounded-full flex items-center justify-center shadow-2xl cursor-pointer"}>
+                    MB
+                </div>
             </div>
 
             <Notifications ref={notificationsRef}/>

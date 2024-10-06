@@ -6,9 +6,6 @@ import "./Map.css";
 import {Button} from "primereact/button";
 import {useMap} from "./hooks/useMap.ts";
 import {useEffect} from "react";
-import {Image} from "primereact/image";
-import {DataTable} from "primereact/datatable";
-import {Column} from "primereact/column";
 import Control from "react-leaflet-custom-control";
 import {OverlayPanel} from "primereact/overlaypanel";
 import {Calendar} from "primereact/calendar";
@@ -25,11 +22,11 @@ type MapRecenterProps = {
     zoomLevel:number
 }
 const MapRecenter = ({ lat, lng, zoomLevel }:MapRecenterProps) => {
-    const map = useLeafletMap();
+    const map:any = useLeafletMap();
 
 
     useEffect(() => {
-        map.flyTo([lat, lng], zoomLevel );
+        map.flyTo([lat, lng], zoomLevel);
     }, [lat, lng]);
 
     return null;
@@ -43,7 +40,8 @@ export const Map = () => {
         showScenes,
         centerPosition,
 		overlayPanel,
-		calendar
+		calendar,
+		zoom
     } = useMap();
     const dispatch = useAppDispatch();
 
@@ -89,7 +87,7 @@ export const Map = () => {
 				</Control>
 				<SatellitePathLayer/>
 				<SatelliteImageLayer width={50} height={50}/>
-                <MapRecenter lat={centerPosition[0]} lng={centerPosition[1]} zoomLevel={6}/>
+                <MapRecenter lat={centerPosition[0]} lng={centerPosition[1]} zoomLevel={zoom}/>
             </MapContainer>
 			<OverlayPanel ref={overlayPanel} >
 				<div>

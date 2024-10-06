@@ -12,6 +12,7 @@ export const useMap = () =>{
     const targets = useAppSelector(state=>state.map.targets);
     const centerPosition = useAppSelector(state=>state.map.centerPosition);
     const dispatch = useAppDispatch();
+    const zoom = useAppSelector(state=>state.map.zoom);
 
 
 	/* Refs */
@@ -42,6 +43,7 @@ export const useMap = () =>{
         showScenes,
         centerPosition,
 		overlayPanel,
-		calendar
+		calendar,
+        zoom
     }
 }

@@ -5,7 +5,7 @@ import {Badge} from "primereact/badge";
 import {Button} from "primereact/button";
 import {BASE_API_URL} from "../../../../config/globals.ts";
 import {useAppDispatch} from "../../../../store/hooks.ts";
-import {deleteTarget} from "../../../../store/map/map.slice.ts";
+import {deleteTarget, setCenterPosition, setZoom} from "../../../../store/map/map.slice.ts";
 import {toggleVisible} from "../../../../store/imageScenes/imageScenes.slice.ts";
 
 
@@ -61,13 +61,16 @@ export const TargetItem = memo(({data}: TargetItemProps) => {
 
             </div>
             <div>
-                <Countdown date={Date.now() + 0}/>
+                <Countdown date={Date.now() + 100000}/>
             </div>
 
         </div>
 
         <div className={"flex w-full justify-end"}>
-            <Button icon={"pi pi-eye"} size={"small"} text label={"View"}/>
+            <Button icon={"pi pi-eye"} size={"small"} text label={"View"} onClick={()=>{
+                dispatch(setCenterPosition([data.coordinate.lat, data.coordinate.lng]));
+                dispatch(setZoom(10));
+            }}/>
             <Button icon={"pi pi-images"} size={"small"} label={"Scenes"} text severity={"secondary"} onClick={()=>{
                 dispatch(toggleVisible());
             }}/>
